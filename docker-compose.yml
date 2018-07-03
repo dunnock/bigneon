@@ -1,0 +1,19 @@
+version: "3"
+services:
+
+  pg:
+    image: postgres:9.6
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password123
+    ports:
+      - "5432:5432"
+
+  bn-db:
+    image: bn-db
+    build: ../bn-db
+
+  bn-api:
+    image: bn-api
+    build: ../bn-api
