@@ -38,3 +38,20 @@ Rebuild all docker images locally
 
     make build
     
+## Create or update the database table definitions
+
+Pre-requisites:
+
+* You need Postgres running (this guide assumes you're running a docker container):
+        `docker-compose up db`
+* Configure your `.env` file (or set environment variables specifically) with the database connection and
+  `bn-db` repo location. See `.env.sample` for the list of envars that can be set.
+
+Then to create the database for the first time, run
+
+    make create-db
+  
+After this, to update the database with the latest migrations, run
+
+    make migrate-db
+    

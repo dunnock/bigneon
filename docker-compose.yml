@@ -10,10 +10,6 @@ services:
     ports:
       - "5432:5432"
 
-  bn-db:
-    image: bn-db
-    build: ../bn-db
-
   bn-api:
     image: bn-api
     build: ../bn-api

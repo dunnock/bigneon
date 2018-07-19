@@ -9,3 +9,9 @@ status:
 
 build:
 	@./scripts/build.sh
+
+create-db:
+	@./scripts/create_db.sh
+
+migrate-db:
+	@./scripts/create_db.sh migrate
