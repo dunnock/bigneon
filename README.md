@@ -10,6 +10,27 @@ First clone this repo
 
 # Usage
 
+## Quick start
+
+First time only:
+
+    make init
+    make sync
+    make build 
+    
+The last command will take a long time. Go and grab some coffee. When done, you set up the DB
+and launch the API with
+
+    make create-db
+    make run-api
+    
+From now on, you only need to run `make run-api` to get the API up and running; unless you need
+a new version of the API, in which case, you start with `make sync`* and continue from there.
+
+\* Take care that your repos are on the `master` branch first, perhaps by using `make status`
+
+# Command Reference
+
 ## Clone all the repositories
 
 Copy all the source code from github to your local machine. This will install all the projects in sibling
