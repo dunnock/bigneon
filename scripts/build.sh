@@ -1,6 +1,6 @@
 #!/bin/bash
 # Pull all the Big Neon repositories
-default_repos="bn-db bn-api bn-android bn-web bn-ios docs"
+default_repos="bn-api bn-android bn-web bn-ios docs"
 repos=$1
 repos=${repos:-$default_repos}
 cd ..
