@@ -18,7 +18,7 @@ First time only:
     make sync
     make build 
     
-The last command will take a long time. Go and grab some coffee. When done, you set up the DB
+The last command will take a long time. Go and grab some coffee. When done, copy the `env.example` file to `.env` and then you set up the DB
 and launch the API with
 
     make create-db

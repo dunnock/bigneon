@@ -13,14 +13,20 @@ check_envar "POSTGRES_USER" $POSTGRES_USER
 check_envar "POSTGRES_PASSWORD" $POSTGRES_PASSWORD
 check_envar "DBNAME" $DBNAME
 check_envar "BN_DB_PATH" $BN_DB_PATH
+check_envar "SUPERUSER_EMAIL" $SUPERUSER_EMAIL
+check_envar "SUPERUSER_PASSWORD" $SUPERUSER_PASSWORD
+check_envar "SUPERUSER_MOBILE" $SUPERUSER_MOBILE
+
 
 # This url is should point to localhost, since it's running from outside the docker network
 DB_URL="postgres://$POSTGRES_USER:$POSTGRES_PASSWORD@localhost:5432/$DBNAME"
 # Make sure the database is running
 docker-compose up -d pg
 
-# check if diesel_cli has been installed and install if not
-diesel -V 2> /dev/null || cargo install diesel_cli --no-default-features --features postgres
-echo "Setting up $DB_URL from $BN_DB_PATH"
-diesel setup --config-file "$BN_DB_PATH/diesel.toml" --database-url "$DB_URL" --migration-dir "$BN_DB_PATH/migrations"
-[[ $1 == migrate ]] && diesel migration run --config-file "$BN_DB_PATH/diesel.toml" --database-url "$DB_URL" --migration-dir "$BN_DB_PATH/migrations"
+echo "Setting up $DB_URL via bndb-cli"
+cargo install --path $BN_DB_PATH --force
+if [ "$1" == "migrate" ]; then 
+  bndb_cli migrate -c $DB_URL
+else
+  bndb_cli create -c $DB_URL -e $SUPERUSER_EMAIL -p $SUPERUSER_PASSWORD -m $SUPERUSER_MOBILE
+fi
