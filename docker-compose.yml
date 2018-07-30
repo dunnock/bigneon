@@ -10,13 +10,22 @@ services:
       - "5432:5432"
 
   api:
-    image: bn-api
-    build: ../bn-api
+    image: taridocker/bn-api:latest
     depends_on:
           - pg
     env_file: .env
     ports:
       - "$API_PORT:$API_PORT"
+
+  web:
+    image: taridocker/bn-web:latest
+    depends_on:
+          - api
+    env_file: .env
+    ports:
+      - "80:80"
+      - "443:443"
+      - "3000:3000"
 
   curl:
     image: tutum/curl
