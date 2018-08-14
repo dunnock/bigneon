@@ -17,4 +17,7 @@ migrate-db:
 	@./scripts/create_db.sh migrate
 
 run-api:
-	docker-compose up api
+	docker-compose pull && docker-compose up api
+
+run:
+	docker-compose pull && docker-compose up
