@@ -12,7 +12,13 @@ First clone this repo
 
 ## Quick start
 
-First time only:
+To pull images from docker hub and run the full development stack (recommended),
+
+        make create-db
+        make run
+        
+To build images locally from source code, rather than pull the prebuilt images from dockerhub, you can run      
+(first time only):
 
     make init
     make sync
@@ -22,9 +28,9 @@ The last command will take a long time. Go and grab some coffee. When done, copy
 and launch the API with
 
     make create-db
-    make run-api
+    make run
     
-From now on, you only need to run `make run-api` to get the API up and running; unless you need
+From now on, you only need to run `make run` to get the API and front-end up and running; unless you need
 a new version of the API, in which case, you start with `make sync`* and continue from there.
 
 \* Take care that your repos are on the `master` branch first, perhaps by using `make status`
@@ -75,4 +81,15 @@ Then to create the database for the first time, run
 After this, to update the database with the latest migrations, run
 
     make migrate-db
+
+## Run the API
+
+To just run the backend (DB + API),
+
+    make run-api
     
+## Run the full stack
+
+To download the latest images, run the DB, API and web front-end:
+
+    make run
