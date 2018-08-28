@@ -21,3 +21,6 @@ run-api:
 
 run:
 	docker-compose pull && docker-compose up
+
+reset-db:
+	docker-compose stop api && docker-compose run api reset-database.sh
