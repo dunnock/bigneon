@@ -25,10 +25,12 @@ docker-compose up -d pg
 
 echo "Setting up $DB_URL via bndb-cli"
 if [[ ! -d $BN_DB_PATH ]]; then 
-  echo "bn-db not found, cloning to $BN_DB_PATH"
-  ./scripts/clone.sh bn-db
+  echo "$BN_DB_PATH not found, cloning bn-api which has $BN_DB_PATH"
+  ./scripts/clone.sh bn-api
 fi
-cargo install --path $BN_DB_PATH --force
+BIGNEON=`pwd`
+cd $BN_DB_PATH; cargo install --path . --force
+cd $BIGNEON
 if [ "$1" == "migrate" ]; then 
   bndb_cli migrate -c $DB_URL
 else
