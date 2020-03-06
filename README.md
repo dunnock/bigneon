@@ -12,10 +12,10 @@ First clone this repo
 
 ## Quick start
 
-To pull images from docker hub and run the full development stack (recommended),
+To pull images from docker hub and run the full development stack (recommended) copy the `env.example` file to `.env` then run,
 
-        make create-db
-        make run
+    make create-db
+    make run
         
 To build images locally from source code, rather than pull the prebuilt images from dockerhub, you can run      
 (first time only):
